@@ -113,6 +113,7 @@ namespace StudentManagement.Presentation.Forms
                     _score.ModifiedBy = Environment.UserName;
                     string newValue = $"TP: {_score.ProcessScore}, Thi: {_score.FinalScore}, TK: {_score.TotalScore}";
 
+                    _repository.UpdateScore(_score);
                     _repository.AddAuditLog(new AuditLog("Update", "Score", $"{studentId}-{subjectId}", Environment.UserName, $"Cập nhật điểm: {oldValue} -> {newValue}"));
                 }
                 else
@@ -126,7 +127,7 @@ namespace StudentManagement.Presentation.Forms
 
                     var newScore = new Score(studentId, subjectId, processScore, finalScore);
                     newScore.ModifiedBy = Environment.UserName;
-                    _repository.Scores.Add(newScore);
+                    _repository.AddScore(newScore);
                     _repository.AddAuditLog(new AuditLog("Create", "Score", $"{studentId}-{subjectId}", Environment.UserName, $"Thêm điểm mới: TP: {processScore}, Thi: {finalScore}, TK: {newScore.TotalScore}"));
                 }
 

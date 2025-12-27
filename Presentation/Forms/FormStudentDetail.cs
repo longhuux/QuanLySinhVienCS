@@ -71,6 +71,7 @@ namespace StudentManagement.Presentation.Forms
                     _student.Email = textBoxEmail.Text.Trim();
                     _student.ClassID = classId;
 
+                    _repository.UpdateStudent(_student);
                     _repository.AddAuditLog(new AuditLog("Update", "Student", _student.StudentID, Environment.UserName, $"Cập nhật thông tin sinh viên {_student.FullName}"));
                 }
                 else
@@ -93,7 +94,7 @@ namespace StudentManagement.Presentation.Forms
                         classId
                     );
 
-                    _repository.Students.Add(newStudent);
+                    _repository.AddStudent(newStudent);
                     _repository.AddAuditLog(new AuditLog("Create", "Student", studentId, Environment.UserName, $"Thêm mới sinh viên {newStudent.FullName}"));
                 }
 

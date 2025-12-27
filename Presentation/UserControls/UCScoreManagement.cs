@@ -170,7 +170,7 @@ namespace StudentManagement.Presentation.UserControls
 
                     if (score != null)
                     {
-                        _repository.Scores.Remove(score);
+                        _repository.DeleteScore(score);
                         _repository.AddAuditLog(new AuditLog("Delete", "Score", $"{studentId}-{subjectId}", Environment.UserName, $"Xóa điểm {subjectId} của sinh viên {studentId}"));
                         LoadData();
                         LoadWarnings();

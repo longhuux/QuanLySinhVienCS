@@ -110,7 +110,7 @@ namespace StudentManagement.Presentation.UserControls
                     
                     if (student != null)
                     {
-                        _repository.Students.Remove(student);
+                        _repository.DeleteStudent(student);
                         _repository.AddAuditLog(new AuditLog("Delete", "Student", studentId, Environment.UserName, $"Xóa sinh viên {student.FullName}"));
                         LoadData();
                         MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -142,7 +142,7 @@ namespace StudentManagement.Presentation.UserControls
                         {
                             if (!_repository.Students.Any(s => s.StudentID == student.StudentID))
                             {
-                                _repository.Students.Add(student);
+                                _repository.AddStudent(student);
                                 _repository.AddAuditLog(new AuditLog("Create", "Student", student.StudentID, Environment.UserName, $"Import sinh viên {student.FullName}"));
                                 addedCount++;
                             }
